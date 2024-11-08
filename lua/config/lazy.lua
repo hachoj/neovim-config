@@ -19,6 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
 ---------------------------------------------------------------------------
+--- IMPORTANT VIM OPTIONS ---
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
@@ -43,18 +44,3 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
-
----------------------------------------------------------------------------
--- POST PLUGIN LOAD SETTINGS
-vim.cmd.colorscheme "catppuccin"
-local builtin = require("telescope.builtin")
-vim.keymap.set('n', '<C-p>', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-
-local config = require("nvim-treesitter.configs")
-config.setup({
-  ensure_installed = {"lua", "html", "rust", "c", "python"},
-  highlight = { enable = true },
-  indent = { enable = true }
-})
----------------------------------------------------------------------------
