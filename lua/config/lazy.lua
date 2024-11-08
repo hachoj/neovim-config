@@ -18,8 +18,18 @@ vim.opt.rtp:prepend(lazypath)
 -- Make sure to setup `mapleader` and `maplocalleader` before
 -- loading lazy.nvim so that mappings are correct.
 -- This is also a good place to setup other settings (vim.opt)
+---------------------------------------------------------------------------
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+
+-- changed tabs to spaces
+vim.cmd("set expandtab")
+
+-- changes tab length 
+vim.cmd("set tabstop=2")
+vim.cmd("set softtabstop=2")
+vim.cmd("set shiftwidth=2")
+---------------------------------------------------------------------------
 
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -33,3 +43,18 @@ require("lazy").setup({
   -- automatically check for plugin updates
   checker = { enabled = true },
 })
+
+---------------------------------------------------------------------------
+-- POST PLUGIN LOAD SETTINGS
+vim.cmd.colorscheme "catppuccin"
+local builtin = require("telescope.builtin")
+vim.keymap.set('n', '<C-p>', builtin.find_files, {})
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
+
+local config = require("nvim-treesitter.configs")
+config.setup({
+  ensure_installed = {"lua", "html", "rust", "c", "python"},
+  highlight = { enable = true },
+  indent = { enable = true }
+})
+---------------------------------------------------------------------------
