@@ -30,6 +30,14 @@ vim.cmd("set expandtab")
 vim.cmd("set tabstop=2")
 vim.cmd("set softtabstop=2")
 vim.cmd("set shiftwidth=2")
+
+vim.cmd("set number relativenumber")
+
+vim.cmd("set autoindent")
+vim.cmd("set smartindent")
+
+vim.g.python3_host_prog = '/usr/bin/python3'
+
 ---------------------------------------------------------------------------
 
 -- Setup lazy.nvim
