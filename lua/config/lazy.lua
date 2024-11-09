@@ -27,9 +27,9 @@ vim.g.maplocalleader = "\\"
 vim.cmd("set expandtab")
 
 -- changes tab length 
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
+vim.cmd("set tabstop=4")
+vim.cmd("set softtabstop=4")
+vim.cmd("set shiftwidth=4")
 
 vim.cmd("set number relativenumber")
 
