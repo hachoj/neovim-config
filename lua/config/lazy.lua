@@ -38,6 +38,15 @@ vim.cmd("set smartindent")
 
 vim.g.python3_host_prog = '/usr/bin/python3'
 
+-- nvim terminal settings
+vim.api.nvim_create_autocmd("TermOpen", {
+    pattern = "*",
+    desc = "remove line numbers from terminal",
+    callback = function()
+        vim.wo.number = false
+        vim.wo.relativenumber = false
+    end,
+})
 ---------------------------------------------------------------------------
 
 -- Setup lazy.nvim
