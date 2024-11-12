@@ -15,6 +15,7 @@ return {
     },
     {
         "neovim/nvim-lspconfig",
+        dependencies = { "williamboman/mason-lspconfig.nvim" },
         lazy = false,
         config = function()
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -25,11 +26,33 @@ return {
                 capabilities = capabilities,
             })
 
+            local function get_python_path()
+                local conda_prefix = os.getenv("CONDA_PREFIX")
+                if conda_prefix then
+                    return conda_prefix .. "/bin/python"
+                else
+                    return vim.fn.exepath("python")
+                end
+            end
+
             lspconfig.pyright.setup({
-                capabilities = capabilities,
+                before_init = function(_, config)
+                    config.settings.python.pythonPath = get_python_path()
+                end,
+                settings = {
+                    python = {
+                        analysis = {
+                            autoSearchPaths = true,
+                            useLibraryCodeForTypes = true,
+                            diagnosticMode = "workspace",
+                        },
+                    },
+                },
             })
 
-            lspconfig.clangd.setup({})
+            lspconfig.clangd.setup({
+                capabilities = capabilities,
+            })
 
             lspconfig.ltex.setup({
                 capabilities = capabilities,
